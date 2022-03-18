@@ -70,12 +70,43 @@ rm(list = c("febrero1","febrero2","febrero3","febrero4"))
 ```
 
 ```{r}
-febrero_datos<- febrero %>%  group_by(titulo) %>% summarise(entradas_mes=sum(Espec..Semana), entradas_ult_semana=last(Espec..Semana),entradas_semama_anterio=lag(Espec..Semana), entradas_first_semana= first(Espec..Semana),semanas_total=max(Semana.Cartel),pais, region,tipo, pantallas_max=max(Pantallas),pantallas_mes=sum(Pantallas), cantidad=1, mes="FEBRERO",semanas_mes=sum(cantidad))
+febrero_datos<- febrero %>%  group_by(titulo) %>% summarise(entradas_mes=sum(Espec..Semana),      
+                                                            entradas_ult_semana=last(Espec..Semana),
+                                                            entradas_semama_anterio=lag(Espec..Semana), 
+                                                            entradas_first_semana= first(Espec..Semana),
+                                                            semanas_total=max(Semana.Cartel),
+                                                            pantallas_max=max(Pantallas),
+                                                            pantallas_mes=sum(Pantallas),
+                                                            pantallas_ult_semana=last(Pantallas), 
+                                                            pantallas_semana_anterior=lag(Pantallas), 
+                                                            pantallas_first_semana=first(Pantallas),
+                                                            semanas_mes=sum(cantidad),
+                                                            pais, region,tipo,cantidad=1, mes="FEBRERO", Rank,
+                                                            rank_mes=first(Rank),
+                                                            rank_anterior=lag(Rank))
 
-febrero_datos<-febrero_datos %>% summarise_all(last) %>% arrange(desc(entradas_mes)) 
+febrero_datos<-febrero_datos %>% summarise_all(last) %>% arrange(desc(entradas_mes))
+febrero_datos<- febrero_datos %>% mutate(rank_total= 1:nrow(febrero_datos))
+#write.csv(febrero_datos, "febrero_datos2.csv")
 
-febrero_datos<- febrero_datos%>% mutate(rank=1:nrow(febrero_datos))
-#write.csv(febrero_datos, "febrero_datos.csv")
+
+febrero_variaciones<- febrero_datos %>% mutate(
+                      var_entradas_mensual=percent((entradas_ult_semana-entradas_first_semana)/entradas_first_semana),                                          
+                      var_entradas_semana_previa=percent((entradas_ult_semana-entradas_semama_anterio)/entradas_semama_anterio),                                 
+                      var_pantallas_mes=percent((pantallas_ult_semana-pantallas_first_semana)/pantallas_first_semana),
+                      var_pantallas_semana_previa=percent((pantallas_ult_semana-pantallas_semana_anterior)/pantallas_semana_anterior), 
+                      var_rank_mensual=(rank_mes-Rank), 
+                      var_rank_ult_semana=(rank_anterior-Rank))
+
+febrero_variaciones<- febrero_variaciones %>% summarise(titulo,
+                                                        entradas_mes, entradas_first_semana, entradas_ult_semana, 
+                                                        var_entradas_mensual, entradas_semama_anterio, 
+                                                        var_pantallas_semana_previa, var_pantallas_mes, 
+                                                        var_rank_mensual, var_rank_ult_semana)
+febrero_variaciones<- febrero_variaciones %>% mutate(rank=1:nrow(febrero_variaciones))
+#write.csv(febrero_variaciones, "febrero_variaciones.csv")
+
+
 
 febrero_estrenos<- febrero %>% filter(Semana.Cartel==1)
 febrero_estrenos<-febrero_estrenos %>% mutate(rank=1:nrow(febrero_estrenos))
