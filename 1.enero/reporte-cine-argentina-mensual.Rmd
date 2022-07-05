@@ -1,0 +1,329 @@
+---
+title: "Untitled"
+author: "Maximiliano Ros"
+date: "16/2/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(formattable)
+library(readr)
+library(showtext)
+font_add(family="segoe", regular = "SEGOEUIB.TTF")
+library(ggtext)
+library(ggpubr)
+```
+
+#ENERO
+```{r}
+enero1<-read.table("1_ENERO.csv",  sep = ";", dec = ".", header = TRUE,
+           encoding = "UTF-8", stringsAsFactors = FALSE, quote = "")
+enero1<- enero1 %>% mutate(semana=1)
+enero2<-read.table("2_ENERO.csv",  sep = ";", dec = ".", header = TRUE,
+           encoding = "UTF-8", stringsAsFactors = FALSE, quote = "")
+enero2<- enero2 %>% mutate(semana=2)
+enero3<-read.table("3_ENERO.csv",  sep = ";", dec = ".", header = TRUE,
+           encoding = "UTF-8", stringsAsFactors = FALSE, quote = "")
+enero3<- enero3 %>% mutate(semana=3,Rank=X.U.FEFF.Rank)
+enero4<-read.table("4_ENERO.csv",  sep = ";", dec = ".", header = TRUE,
+           encoding = "UTF-8", stringsAsFactors = FALSE, quote = "")
+enero4<- enero4 %>% mutate(semana=4, Rank=X.U.FEFF.Rank)
+
+enero<- bind_rows(enero1,enero2,enero3,enero4)
+enero<- enero %>% group_by(Titulo,semana) %>% arrange(Titulo) %>% select(-c(Entradas.Total,X.U.FEFF.Rank))
+
+rm(list=c("enero1","enero2","enero3","enero4"))
+```
+
+
+
+
+```{r}
+enero_prueba<- enero %>% group_by(Titulo) %>% summarise(entradas_mes=sum(Espec..Semana), entradas_ult_semana=last(Espec..Semana),entradas_semama_anterio=lag(Espec..Semana), entradas_first_semana= first(Espec..Semana),semanas_total=max(Semana.Cartel),semanas_mes=sum(cantidad),pais, region,tipo, pantallas_max=max(Pantallas),pantallas_mes=sum(Pantallas), cantidad=1, mes="ENERO")
+enero_prueba<-enero_prueba %>% summarise_all(last) %>% arrange(desc(entradas_mes))
+#write.csv(enero_prueba, "enero_powerbi.csv")
+
+enero_estrenos<-enero %>% filter(Semana.Cartel==1)
+#write.csv(enero_estrenos, "enero_estrenos.csv")2
+```
+
+```{r}
+#variaciones
+variaciones_enero<-enero_prueba %>% summarise(Titulo, var_entradas_first_last=percent((entradas_ult_semana-entradas_first_semana)/entradas_first_semana), entradas_first_semana,entradas_ult_semana)
+```
+
+
+
+
+### FEBRERO ###
+#### Del 03 de Febrero al 02 de Marzo. 
+
+```{r}
+febrero1<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/2.febrero/1.FEBRERO_02_09.csv", sep=";")
+febrero2<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/2.febrero/2.FEBRERO_10_16.csv", sep=";")
+febrero3<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/2.febrero/3.FEBRERO_17_23.csv", sep=";")
+febrero4<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/2.febrero/4.FEBRERO_24_02.csv", sep=";")
+
+febrero<- bind_rows(febrero1,febrero2,febrero3,febrero4) %>% mutate(cantidad=1)
+rm(list = c("febrero1","febrero2","febrero3","febrero4"))
+```
+
+```{r}
+febrero_datos<- febrero %>%  group_by(titulo) %>% summarise(entradas_mes=sum(Espec..Semana),      
+                                                            entradas_ult_semana=last(Espec..Semana),
+                                                            entradas_semama_anterio=lag(Espec..Semana), 
+                                                            entradas_first_semana= first(Espec..Semana),
+                                                            semanas_total=max(Semana.Cartel),
+                                                            pantallas_max=max(Pantallas),
+                                                            pantallas_mes=sum(Pantallas),
+                                                            pantallas_ult_semana=last(Pantallas), 
+                                                            pantallas_semana_anterior=lag(Pantallas), 
+                                                            pantallas_first_semana=first(Pantallas),
+                                                            semanas_mes=sum(cantidad),
+                                                            pais, region,tipo,cantidad=1, mes="FEBRERO", Rank,
+                                                            rank_mes=first(Rank),
+                                                            rank_anterior=lag(Rank))
+
+febrero_datos<-febrero_datos %>% summarise_all(last) %>% arrange(desc(entradas_mes))
+febrero_datos<- febrero_datos %>% mutate(rank_total= 1:nrow(febrero_datos))
+#write.csv(febrero_datos, "febrero_datos2.csv")
+febrero_datos %>% summarise(entradas_total=sum(entradas_mes))
+```
+
+
+```{r}
+febrero_variaciones<- febrero_datos %>% mutate(
+                      var_entradas_mensual=percent((entradas_ult_semana-entradas_first_semana)/entradas_first_semana),                                          
+                      var_entradas_semana_previa=percent((entradas_ult_semana-entradas_semama_anterio)/entradas_semama_anterio),                                 
+                      var_pantallas_mes=percent((pantallas_ult_semana-pantallas_first_semana)/pantallas_first_semana),
+                      var_pantallas_semana_previa=percent((pantallas_ult_semana-pantallas_semana_anterior)/pantallas_semana_anterior), 
+                      var_rank_mensual=(rank_mes-Rank), 
+                      var_rank_ult_semana=(rank_anterior-Rank))
+
+febrero_variaciones<- febrero_variaciones %>% summarise(titulo,
+                                                        entradas_mes, entradas_first_semana, entradas_ult_semana, 
+                                                        var_entradas_mensual, entradas_semama_anterio, 
+                                                        var_pantallas_semana_previa, var_pantallas_mes, 
+                                                        var_rank_mensual, var_rank_ult_semana)
+febrero_variaciones<- febrero_variaciones %>% mutate(rank=1:nrow(febrero_variaciones))
+#write.csv(febrero_variaciones, "febrero_variaciones.csv")
+
+
+
+febrero_estrenos<- febrero %>% filter(Semana.Cartel==1)
+febrero_estrenos<-febrero_estrenos %>% mutate(rank=1:nrow(febrero_estrenos))
+#write.csv(febrero_estrenos,"febrero_estrenos.csv")
+```
+
+#MARZO 
+```{r}
+marzo1<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/3.marzo/1.MARZO_03_09.csv", sep=";")
+marzo2<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/3.marzo/2.MARZO_10_16.csv", sep=";")
+marzo3<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/3.marzo/3.MARZO_17_23.csv", sep=";")
+marzo4<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/3.marzo/4.MARZO_24_30.csv", sep=";")
+
+marzo<- bind_rows(marzo1,marzo2,marzo3,marzo4) %>% mutate(cantidad=1)
+rm(list = c("marzo1","marzo2","marzo3","marzo4"))
+```
+
+
+```{r}
+marzo_datos<- marzo %>%  group_by(Titulo) %>% summarise(entradas_mes=sum(Espec..Semana),      
+                                                            entradas_ult_semana=last(Espec..Semana),
+                                                            entradas_semama_anterio=lag(Espec..Semana), 
+                                                            entradas_first_semana= first(Espec..Semana),
+                                                            semanas_total=max(Semana.Cartel),
+                                                            pantallas_max=max(Pantallas),
+                                                            pantallas_mes=sum(Pantallas),
+                                                            pantallas_ult_semana=last(Pantallas), 
+                                                            pantallas_semana_anterior=lag(Pantallas), 
+                                                            pantallas_first_semana=first(Pantallas),
+                                                            semanas_mes=sum(cantidad),
+                                                            pais, region,tipo,cantidad=1, mes="MARZO", ï..Rank,
+                                                            rank_mes=first(ï..Rank),
+                                                            rank_anterior=lag(ï..Rank), direccion, eyd)
+
+marzo_datos<-marzo_datos %>% summarise_all(last) %>% arrange(desc(entradas_mes))
+marzo_datos<- marzo_datos %>% mutate(rank_total= 1:nrow(marzo_datos))
+#write.csv(marzo_datos, "marzo_datos.csv")
+
+marzo_datos %>% filter(tipo=="pelicula"|  tipo=="documental") %>%  group_by(region) %>% summarise(sum(entradas_mes)/sum(marzo_datos$entradas_mes))
+
+prueba <- marzo_datos %>%  filter(entradas_mes<1000000 & rank_total<26)  
+
+mean(prueba$entradas_mes)
+mean(prueba$pantallas_max)
+```
+
+
+```{r}
+marzo_variaciones<- marzo_datos %>% mutate(
+                      var_entradas_mensual=percent((entradas_ult_semana-entradas_first_semana)/entradas_first_semana),                                          
+                      var_entradas_semana_previa=percent((entradas_ult_semana-entradas_semama_anterio)/entradas_semama_anterio),                                 
+                      var_pantallas_mes=percent((pantallas_ult_semana-pantallas_first_semana)/pantallas_first_semana),
+                      var_pantallas_semana_previa=percent((pantallas_ult_semana-pantallas_semana_anterior)/pantallas_semana_anterior), 
+                      var_rank_mensual=(rank_mes-ï..Rank), 
+                      var_rank_ult_semana=(rank_anterior-ï..Rank), eyd)
+
+
+marzo_variaciones<- marzo_variaciones %>% summarise(Titulo,
+                                                        entradas_mes, entradas_first_semana, entradas_ult_semana, 
+                                                        var_entradas_mensual, entradas_semama_anterio, 
+                                                        var_pantallas_semana_previa, var_pantallas_mes, 
+                                                        var_rank_mensual, var_rank_ult_semana)
+marzo_variaciones<- marzo_variaciones %>% mutate(rank=1:nrow(marzo_variaciones))
+#write.csv(marzo_variaciones, "marzo_variaciones.csv")
+
+```
+
+#ABRIL 
+```{r}
+abril1<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/4.abril/1. ABRIL-SEMANA _31_06.csv", sep=";")
+abril2<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/4.abril/2. ABRIL-SEMANA_07 _13.csv", sep=";")
+abril3<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/4.abril/3. ABRIL-SEMANA_14_20.csv", sep=";")
+abril4<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/4.abril/4. ABRIL-SEMANA_21_27.csv", sep=";")
+
+abril<- bind_rows(abril1,abril2,abril3,abril4) %>% mutate(cantidad=1)
+rm(list = c("abril1","abril2","abril3","abril4"))
+
+abril<- abril %>% mutate(director=case_when(eyd==0 ~ "NO GUIONISTA",
+                                        eyd==0.5 ~"CO-GUIONISTA",
+                                        eyd==1 ~ "GUIONISTA"))
+```
+
+```{r}
+abril_datos<- abril %>%  group_by(Titulo) %>% summarise(entradas_mes=sum(Espec..Semana),      
+                                                            entradas_ult_semana=last(Espec..Semana),
+                                                            entradas_semama_anterio=lag(Espec..Semana), 
+                                                            entradas_first_semana= first(Espec..Semana),
+                                                            semanas_total=max(Semana.Cartel),
+                                                            pantallas_max=max(Pantallas),
+                                                            pantallas_mes=sum(Pantallas),
+                                                            pantallas_ult_semana=last(Pantallas), 
+                                                            pantallas_semana_anterior=lag(Pantallas), 
+                                                            pantallas_first_semana=first(Pantallas),
+                                                            semanas_mes=sum(cantidad),
+                                                            pais, region,tipo,cantidad=1, mes="ABRIL", Rank,
+                                                            rank_mes=first(Rank),
+                                                            rank_anterior=lag(Rank), direccion, director)
+
+
+abril_datos$Titulo[grepl("RODOLFO WALSH - EL DOCUMENTAL", abril_datos$Titulo)]<- "R J W"
+
+abril_datos<-abril_datos %>% summarise_all(last) %>% arrange(desc(entradas_mes))
+abril_datos<- abril_datos %>% mutate(rank_total= 1:nrow(abril_datos))
+#write.csv(abril_datos, "abril_datos.csv")
+```
+
+
+
+```{r}
+abril_variaciones<- abril_datos %>% mutate(
+                      var_entradas_mensual=percent((entradas_ult_semana-entradas_first_semana)/entradas_first_semana),                                          
+                      var_entradas_semana_previa=percent((entradas_ult_semana-entradas_semama_anterio)/entradas_semama_anterio),                                 
+                      var_pantallas_mes=percent((pantallas_ult_semana-pantallas_first_semana)/pantallas_first_semana),
+                      var_pantallas_semana_previa=percent((pantallas_ult_semana-pantallas_semana_anterior)/pantallas_semana_anterior), 
+                      var_rank_mensual=(rank_mes-Rank), 
+                      var_rank_ult_semana=(rank_anterior-Rank), director)
+
+
+abril_variaciones<- abril_variaciones %>% summarise(Titulo,
+                                                        entradas_mes, entradas_first_semana, entradas_ult_semana, 
+                                                        var_entradas_mensual, entradas_semama_anterio, 
+                                                        var_pantallas_semana_previa, var_pantallas_mes, 
+                                                        var_rank_mensual, var_rank_ult_semana)
+abril_variaciones<- abril_variaciones %>% mutate(rank=1:nrow(abril_variaciones))
+#write.csv(abril_variaciones, "abril_variaciones.csv")
+
+```
+
+
+#GRAFICOS ESPECIALES IG - ABRIL - SEXO 
+```{r}
+abril_direccion_dat<- abril_datos %>% filter(!(direccion==""))
+
+abril_direccion<-abril_direccion_dat %>% group_by(direccion) %>% summarise(porcentaje=formattable::percent(sum(cantidad)/sum(abril_direccion_dat$cantidad)))
+
+abril_direccion$direccion[grepl("hombre",abril_direccion$direccion)]<- "HOMBRE"
+abril_direccion$direccion[grepl("mujer",abril_direccion$direccion)]<- "MUJER"
+abril_direccion$direccion[grepl("mixto",abril_direccion$direccion)]<- "MIXTO"
+
+
+abril_grafico_direccion<-abril_direccion %>% ggplot(aes(x=2, y=porcentaje, fill=direccion))+ 
+                    geom_col()+
+                    coord_polar(theta = "y") +
+                    xlim(c(0.2, 2 + 0.5))+
+                    geom_text(aes(label = porcentaje),  position = position_stack(vjust = 0.5), color="white")+
+                    scale_fill_manual(values =c("#ffde5c","#FA8806","#993303"), breaks=c("MUJER", "HOMBRE", "MIXTO"))+
+                    labs(x="", title="", subtitle = "", caption = "")+
+                    theme(plot.title.position = "plot",plot.title = element_markdown(size=14, hjust = -0.48, family="segoe"), panel.background = element_blank(),axis.text.x = element_blank(), axis.text.y = element_blank(),axis.ticks = element_blank(),text = element_text(family = "segoe"),panel.grid.major = element_blank(),legend.position = "right", legend.title = element_blank(),legend.box.background =  element_blank(), legend.text = element_blank() , axis.title.x = element_blank())
+
+ggsave("abril_grafico_direccion.png")
+```
+# GRAFICOS ESPECIALES EYD
+
+```{r}
+abril_eyd<- abril_datos %>% filter(!(director=="")) %>% group_by(director) %>% summarise(porcentaje=formattable::percent(sum(cantidad)/sum(abril_datos$cantidad)))
+
+abril_grafico_eyd<-abril_eyd %>% ggplot(aes(x=2, y=porcentaje, fill=director))+ 
+                    geom_col()+
+                    coord_polar(theta = "y") +
+                    xlim(c(0.2, 2 + 0.5))+
+                    geom_text(aes(label = porcentaje),  position = position_stack(vjust = 0.5), family="segoe", color="white")+
+                    scale_fill_manual(values =c("#FA8806","#ffde5c","#993303"), breaks=c("GUIONISTA", "CO-GUIONISTA", "NO GUIONISTA"))+
+                    labs(x="", title="", subtitle = "", caption = "")+
+                    theme(plot.title.position = "plot",plot.title = element_markdown(size=14, hjust = -0.48, family="segoe"),plot.subtitle = element_markdown(size=12, hjust = 0.97, family="segoe"), panel.background = element_blank(),axis.text.x = element_blank(), axis.text.y = element_blank(),axis.ticks = element_blank(), text = element_text(family = ""),panel.grid.major = element_blank(),legend.position = "right", legend.title = element_blank(),legend.box.background =  element_blank(), axis.title.x = element_blank())
+
+ggsave("abril_grafico_eyd.png")
+```
+##### MAYO
+
+#mayo 
+```{r}
+mayo1<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/5.mayo/1. MAYO-SEMANA_28_04.csv", sep=";")
+mayo2<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/5.mayo/2. MAYO-SEMANA_05_11.csv", sep=";")
+mayo3<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/5.mayo/3. MAYO-SEMANA_12_18.csv", sep=";")
+mayo4<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/5.mayo/4. MAYO-SEMANA_19_25.csv", sep=";")
+mayo5<- read.csv("C:/Users/LENOVO/Documents/GitHub/EYD/reporte-mensual-cine-argentina/5.mayo/5. MAYO-SEMANA_26_01.csv", sep=";")
+
+
+mayo<- bind_rows(mayo1,mayo2,mayo3,mayo4,mayo5) %>% mutate(cantidad=1)
+rm(list = c("mayo1","mayo2","mayo3","mayo4", "mayo5"))
+
+mayo<- mayo %>% mutate(director=case_when(eyd==0 ~ "NO GUIONISTA",
+                                        eyd==0.5 ~"CO-GUIONISTA",
+                                        eyd==1 ~ "GUIONISTA"))
+```
+
+```{r}
+mayo_datos<- mayo %>%  group_by(Titulo) %>% summarise(entradas_mes=sum(Espec..Semana),      
+                                                            entradas_ult_semana=last(Espec..Semana),
+                                                            entradas_semama_anterio=lag(Espec..Semana), 
+                                                            entradas_first_semana= first(Espec..Semana),
+                                                            semanas_total=max(Semana.Cartel),
+                                                            pantallas_max=max(Pantallas),
+                                                            pantallas_mes=sum(Pantallas),
+                                                            pantallas_ult_semana=last(Pantallas), 
+                                                            pantallas_semana_anterior=lag(Pantallas), 
+                                                            pantallas_first_semana=first(Pantallas),
+                                                            semanas_mes=sum(cantidad),
+                                                            pais, region,tipo,cantidad=1, mes="MAYO", Rank,
+                                                            rank_mes=first(Rank),
+                                                            rank_anterior=lag(Rank), direccion, director)
+
+mayo_datos<-mayo_datos %>% summarise_all(last) %>% arrange(desc(entradas_mes))
+mayo_datos<- mayo_datos %>% mutate(rank_total= 1:nrow(mayo_datos))
+```
+
+#BALANCE SEMESTRAL 
+```{r}
+
+semestre<- left_join(enero_estrenos,febrero_datos, marzo)
+
+```
+

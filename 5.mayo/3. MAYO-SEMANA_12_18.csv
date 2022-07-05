@@ -1,0 +1,84 @@
+﻿Rank;Fecha Estreno;Titulo;Entradas Total;Pantallas;Espec. Semana;Semana Cartel;extranjero;pais;region ;nombre;direccion;eyd;tipo;genero
+1;4/5/2022;DOCTOR STRANGE EN EL MULTIVERSO DE LA LOCURA;1478370;575;429180;3;1;EE.UU;EE.UU;Sam Raimi;hombre;0;pelicula;fantasia
+2;7/4/2022;SONIC 2: LA PELICULA;1000171;220;88085;7;1;EE.UU;EE.UU;Jeff Fowler;hombre;0;pelicula;aventura
+3;14/4/2022;ANIMALES FANTASTICOS: LOS SECRETOS DE DUMBLEDORE;553164;80;20246;6;1;UK;EUROPA;David Yates;hombre;0;pelicula;fantasia
+4;12/5/2022;LA MEDIUM;17660;69;17660;1;1;TAILANDIA;ASIA;Banjong Pisanthanakun;hombre;0.5;pelicula;terror
+5;12/5/2022;LLAMAS DE VENGANZA;16275;147;16190;2;1;EE.UU;EE.UU;Keith Thomas;hombre;0;pelicula;thriller
+6;21/4/2022;EL HOMBRE DEL NORTE;94563;27;8222;4;1;EE.UU;EE.UU;Robert Eggers;hombre;0.5;pelicula;aventura
+7;28/4/2022;EN LA MIRA;50292;54;7367;4;0;ARGENTINA;ARGENTINA;Ricardo Hornos, Carlos Gil;hombre;0.5;pelicula;thriller
+8;21/4/2022;LA CIUDAD PERDIDA;94926;23;5323;5;1;EE.UU;EE.UU;Aaron Nee, Adam Nee;hombre;0.5;pelicula;aventura
+9;17/3/2022;LOS TIPOS MALOS;299283;26;4168;10;1;EE.UU;EE.UU;Pierre Perifel;hombre;0;pelicula;animacion
+10;12/5/2022;SISTEMA K.E.OP/S;2153;26;2153;1;0;ARGENTINA;ARGENTINA;Nicolás Goldbart;hombre;1;pelicula;comedia
+11;12/5/2022;UN AMOR CERCA DEL PARAÍSO;1351;13;1351;1;1;FINLANDIA;EUROPA;Mika Kaurismäki;hombre;0;pelicula;comedia
+12;28/4/2022;EL BUEN PATRON;5269;8;1004;3;1;ESPAÑA;EUROPA;Fernando León de Aranoa;hombre;1;pelicula;comedia
+13;14/4/2022;LAS ROJAS;13001;6;958;5;0;ARGENTINA;ARGENTINA;Matías Lucchesi;hombre;0.5;pelicula;drama 
+14;10/2/2022;EL EXORCISMO DE DIOS;151123;6;958;14;1;EE.UU;EE.UU;Alejandro Hidalgo;hombre;0.5;pelicula;terror
+15;19/5/2022;EL PESO DEL TALENTO;945;6;945;1;1;EE.UU;EE.UU;Tom Gormican;hombre;0.5;pelicula;comedia
+16;15/3/2022;COMPETENCIA OFICIAL;94278;5;920;10;1;ESPAÑA;EUROPA;Gastón Duprat, Mariano Cohn;hombre;0.5;pelicula;comedia
+17;5/5/2022;MATAR A LA BESTIA;1511;6;746;2;0;ARGENTINA;ARGENTINA;Agustina San Martín;mujer;1;pelicula;drama 
+18;1/5/2022;CINECLUB NÚCLEO EN GAUMONT - MAYO 2022;2310;1;670;3;;;;;;;festival;
+19;3/5/2022;LATINARAB 2022;786;1;595;2;;;;;;;festival;
+20;12/5/2022;INTEGRAL ANAHÍ BERNERI Y MALAS CASAS;504;1;504;1;;;;;;;festival;
+21;10/3/2022;AXIOMAS;4074;2;397;11;0;ARGENTINA;ARGENTINA;Marcela Luchetta;mujer;0.5;pelicula;drama 
+22;28/4/2022;DOWNTON ABBEY: UNA NUEVA ERA;6210;4;386;4;1;UK;EUROPA;Simon Curtis;hombre;0;pelicula;drama 
+23;7/4/2022;JACK EN LA CAJA MALDITA;54900;4;359;6;1;UK ;EUROPA;Lawrence Fowler;hombre;1;pelicula;terror
+24;5/5/2022;VUELTA AL PERRO;1055;3;357;2;0;ARGENTINA;ARGENTINA;Nicolás Di Cocco;hombre;0.5;pelicula;drama 
+25;6/1/2022;SING 2, VEN Y CANTA DE NUEVO;874492;5;352;21;1;EE.UU;EE.UU;Garth Jennings;hombre;1;pelicula;animacion
+26;7/4/2022;CMON CMON;8061;4;343;6;1;EE.UU;EE.UU;Mike Mills;hombre;1;pelicula;drama 
+27;7/4/2022;LAS COSAS QUE NO TE CONTÉ;6000;4;314;6;1;UK;EUROPA;William Nicholson;hombre;1;pelicula;drama 
+28;21/4/2022;VIRUS: 32;12689;1;292;4;1;URUGUAY;LATAM;Gustavo Hernández;hombre;0;pelicula;terror
+29;14/5/2022;STANLEY KWAN X 2;292;1;292;1;;;;;;;festival;
+30;31/3/2022;LA RUEDA DE LA FORTUNA Y LA FANTASIA;1356;3;226;4;1;JAPON;ASIA;Ryûsuke Hamaguchi;hombre;1;pelicula;drama 
+31;2/5/2022;EL CAIRO MAYO/JUNIO;705;1;219;2;;;;;;;festival;
+32;3/2/2022;JESÚS LÓPEZ;1686;1;189;10;0;ARGENTINA;ARGENTINA;Maximiliano Schonfeld;hombre;0.5;pelicula;drama 
+33;19/5/2022;FRANKLIN, HISTORIA DE UN BILLETE;150;2;150;1;0;ARGENTINA;ARGENTINA;Lucas Vivo García Lagos;hombre;0.5;pelicula;thriller
+34;31/3/2022;AIRE FRESCO;661;1;146;5;0;ARGENTINA;ARGENTINA;Andrés Cuervo;hombre;0;pelicula;drama 
+35;7/10/2021;LAZOS DE FAMILIA;2739;1;139;8;1;UK;EUROPA;Ken Loach;hombre;0;pelicula;drama 
+36;2/3/2022;BATMAN;1280705;2;121;12;1;EE.UU;EE.UU;Matt Reeves;hombre;0.5;pelicula;thriller
+37;17/5/2022;""" ENCUENTRO CON EL NUEVO CINE COREANO""";113;1;113;1;;;;;;;festival;
+38;12/5/2022;SIETE RITMOS;111;1;111;1;0;ARGENTINA;ARGENTINA;Julia Rotondi;mujer;1;pelicula;drama 
+39;25/11/2021;ENCANTO;717360;1;106;27;1;EE.UU;EE.UU;Jared Bush, Byron Howard, Charise Castro Smith;mixto;0.5;pelicula;animacion
+40;7/4/2022;FUI ALAN POR UN AÑO;471;2;102;5;0;ARGENTINA;ARGENTINA;Darío Arcella;hombre;1;documental;documental
+41;24/2/2022;LA LLAMADA FINAL;35043;1;92;12;1;EE.UU;EE.UU;Timothy Woodward Jr.;hombre;0;pelicula;terror
+42;5/5/2022;CICLO MAYO 2022;131;1;89;2;;;;;;;festival;
+43;24/2/2022;BELFAST;23734;3;86;12;1;UK;EUROPA;Kenneth Branagh;hombre;1;pelicula;drama 
+44;17/3/2022;LA DOSIS;348;5;81;2;0;ARGENTINA;ARGENTINA;Martin Kraut;hombre;1;pelicula;thriller
+45;15/12/2021;SPIDER MAN SIN CAMINO A CASA;4039081;1;76;24;1;EE.UU;EE.UU;Jon Watts;hombre;0;pelicula;fantasia
+46;25/11/2021;EL PERRO QUE NO CALLA;5528;1;74;23;0;ARGENTINA;ARGENTINA;Ana Katz;mujer;0.5;pelicula;drama 
+47;12/5/2022;(...) EL MISMO RIO;73;1;73;1;0;ARGENTINA;ARGENTINA;Alejandro Fernández Mouján;hombre;1;documental;documental
+48;31/3/2022;MORBIUS;287895;3;69;8;1;EE.UU;EE.UU;Daniel Espinosa;hombre;0;pelicula;terror
+49;9/5/2022;ARTEÓN CINE ARTE;61;1;51;2;;;;;;;festival;
+50;16/9/2021;EN COMPAÑIA;562;1;50;5;0;ARGENTINA;ARGENTINA;Ada Frontini;mujer;0.5;documental;documental
+51;5/3/2021;EL MAESTRO;492;3;47;8;0;ARGENTINA;ARGENTINA;Cristina Tamagnini, Julián Dabien;mixto;0.5;pelicula;drama 
+52;17/2/2022;UNCHARTED: FUERA DEL MAPA;546988;1;46;14;1;EE.UU;EE.UU;Ruben Fleischer;hombre;0;pelicula;aventura
+53;22/3/2022;AZOR;3639;2;44;8;1;SUIZA;EUROPA;Andreas Fontana;hombre;0.5;pelicula;thriller
+54;28/10/2021;YO NENA YO PRINCESA;45462;1;39;17;0;ARGENTINA;ARGENTINA;Federico Palazzo;hombre;1;pelicula;drama 
+55;1/5/2022;"""UN LARGO ADIÓS: EL MARLOWE DE CHANDLER""";48;1;36;2;;;;;;;festival;
+56;10/3/2022;LAS NOCHES SON DE LOS MONSTRUOS;1572;1;35;10;0;ARGENTINA;ARGENTINA;Sebastian Perillo;hombre;0;pelicula;fantasia
+57;2/5/2022;""" ETIQUETA NEGRA MAYO 2022""";118;1;35;3;;;;;;;festival;
+58;27/1/2022;PIEDRA NOCHE;1209;1;31;9;0;ARGENTINA;ARGENTINA;Iván Fund;hombre;0.5;pelicula;fantasia
+59;28/10/2021;EL ARPONERO;444;1;26;6;1;NORUEGA;EUROPA;Mirko Stopar;hombre;1;documental;documental
+60;3/5/2022;RETROSPECTIVA DE JOSE L.TORRES LEIVA;168;1;26;3;;;;;;;festival;
+61;14/4/2022;MARIA LUISA BEMBERG EL ECO DE MI VOZ;529;1;24;2;0;ARGENTINA;ARGENTINA;Alejandro Maci;hombre;1;documental;documental
+62;16/12/2021;VIDA POETA - HOMERO EXPÓSITO;706;4;23;5;0;ARGENTINA;ARGENTINA;Claudia Sandina;mujer;1;documental;documental
+63;3/3/2022;LEJOS DE CASA;34;1;19;3;0;ARGENTINA;ARGENTINA;Laura Dariomerlo;mujer;0;pelicula;drama 
+64;11/3/2021;VICENTA;560;1;18;7;0;ARGENTINA;ARGENTINA;Darío Doria;hombre;0.5;documental;documental
+65;21/5/2015;DAMIANA KRYYGI;2496;1;17;22;0;ARGENTINA;ARGENTINA;Alejandro Fernández Mouján;hombre;1;documental;documental
+66;12/5/2022;FUEGO EN CASABINDO;17;1;17;1;0;ARGENTINA;ARGENTINA;Miguel Mirra;hombre;1;documental;documental
+67;17/3/2022;CICLO DE CINE DE ANIMÉ;52;1;16;3;;;;;;;festival;
+68;12/5/2022;ESPEJO PARA CUANDO ME PRUEBE E;15;1;15;1;0;ARGENTINA;ARGENTINA;Alejandro Fernández Mouján;hombre;1;documental;documental
+69;21/10/2021;TARARA;504;1;15;5;0;ARGENTINA;ARGENTINA;Ernesto Fontán;hombre;1;documental;documental
+70;14/4/2022;MADRE PLANTA;309;1;14;3;0;ARGENTINA;ARGENTINA;Lisandro Costa, Alejandro Espolsino, Francisco López;hombre;1;documental;documental
+71;24/2/2022;RE GRANCHIO;2414;1;12;11;1;ITALIA;EUROPA;Alessio Rigo de Righi, Matteo Zoppis;hombre;1;pelicula;drama 
+72;12/7/2007;PULQUI, UN INSTANTE EN LA PATRIA;2050;1;11;20;0;ARGENTINA;ARGENTINA;Alejandro Fernández Mouján;hombre;1;documental;documental
+73;1/5/2022;"""FOECX COLUMBIA""";16;1;11;2;;;;;;;festival;
+74;22/8/2002;LAS PALMAS, CHACO;200;1;10;2;0;ARGENTINA;ARGENTINA;Alejandro Fernández Mouján;hombre;1;documental;documental
+75;3/2/2022;LAS COSAS QUE DECIMOS, LAS COSAS QUE HACEMOS;2574;1;8;11;1;FRANCIA;EUROPA;Emmanuel Mouret;hombre;1;pelicula;romance
+76;24/3/2022;JUJUTSU KAISEN 0;119358;1;8;8;1;JAPON;ASIA;Sunghoo Park;hombre;0;pelicula;animacion
+77;10/3/2022;EL PAIS DE LAS ULTIMAS COSAS;872;1;5;7;0;ARGENTINA;ARGENTINA;Alejandro Chomski;hombre;0.5;pelicula;drama 
+78;4/5/2010;LOS RESISTENTES;470;1;5;9;0;ARGENTINA;ARGENTINA;Alejandro Fernández Mouján;hombre;0.5;documental;documental
+79;26/9/2019;LA SOMBRA DEL GALLO;1696;1;4;10;0;ARGENTINA;ARGENTINA;Nicolás Herzog;hombre;0.5;pelicula;thriller
+80;17/2/2022;PUNTO ROJO;996;1;4;7;1;SUECIA;EUROPA;Alain Darborg;hombre;0.5;pelicula;thriller
+81;7/4/2022;EL ULTIMO ZOMBI;1751;1;2;6;0;ARGENTINA;ARGENTINA;Martín Basterretche;hombre;0.5;pelicula;terror
+82;28/4/2022;I NOSTRI GIORNI (NUESTROS DIAS);145;1;2;3;0;ARGENTINA;ARGENTINA;Gisela Peláez;mujer;0.5;documental;documental
+83;31/3/2022;BOROM TAXI;225;1;1;3;0;ARGENTINA;ARGENTINA;Andrés Guerberoff;hombre;1;documental;documental
